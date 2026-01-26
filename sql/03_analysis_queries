@@ -1,0 +1,32 @@
+-- Risk scoring view
+DROP VIEW IF EXISTS fraud_scored_view;
+
+CREATE VIEW fraud_scored_view AS
+SELECT *,
+    (flag_duplicate + flag_large_amount + flag_time_anomaly) AS risk_score,
+
+    CASE
+        WHEN (flag_duplicate + flag_large_amount + flag_time_anomaly) >= 2 THEN 'HIGH RISK'
+        WHEN (flag_duplicate + flag_large_amount + flag_time_anomaly) = 1 THEN 'MEDIUM RISK'
+        ELSE 'LOW RISK'
+    END AS risk_level
+FROM fraud_flags_view;
+
+
+
+-- KPI Summary
+SELECT 
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN risk_level = 'HIGH RISK' THEN 1 ELSE 0 END) AS high_risk_count,
+    SUM(CASE WHEN risk_level = 'MEDIUM RISK' THEN 1 ELSE 0 END) AS medium_risk_count,
+    SUM(CASE WHEN risk_level = 'HIGH RISK' THEN Amount ELSE 0 END) AS total_risk_exposure
+FROM fraud_scored_view;
+
+
+
+-- Flag frequency
+SELECT 
+    SUM(flag_duplicate) AS duplicate_flags,
+    SUM(flag_large_amount) AS large_amount_flags,
+    SUM(flag_time_anomaly) AS time_anomaly_flags
+FROM fraud_flags_view;
