@@ -1,0 +1,35 @@
+DROP VIEW IF EXISTS fraud_flags_view;
+
+CREATE VIEW fraud_flags_view AS
+SELECT
+    t.Transaction_ID,
+    t.Transaction_DateTime,
+    t.Amount,
+    t.Vendor_Customer,
+    t.Payment_Method,
+    t.Location,
+
+    -- Duplicate transaction flag
+    CASE 
+        WHEN EXISTS (
+            SELECT 1 
+            FROM transactions t2
+            WHERE t2.Vendor_Customer = t.Vendor_Customer
+              AND t2.Amount = t.Amount
+              AND t2.Transaction_DateTime = t.Transaction_DateTime
+              AND t2.Transaction_ID <> t.Transaction_ID
+        ) THEN 1 ELSE 0 
+    END AS flag_duplicate,
+
+    -- Large transaction flag
+    CASE 
+        WHEN t.Amount >= 1000 THEN 1 ELSE 0 
+    END AS flag_large_amount,
+
+    -- Night hour anomaly flag (late night transactions)
+    CASE 
+        WHEN CAST(strftime('%H', t.Transaction_DateTime) AS INTEGER) BETWEEN 0 AND 5 
+        THEN 1 ELSE 0 
+    END AS flag_time_anomaly
+
+FROM transactions t;
