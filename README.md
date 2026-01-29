@@ -1,54 +1,128 @@
-# Fraud_Detection_Analytics
-SQL + Power BI fraud detection dashboard, identifying suspicious transactions and financial risk patterns.
+🔍 Fraud Detection Analytics Dashboard (SQL + Power BI) 📌 Project Overview
 
+This project simulates a financial fraud detection system designed to identify high-risk transactions using SQL-based rule logic and interactive Power BI dashboards.
 
-# Fraud Detection Dashboard — Financial Risk Analytics Project
+The goal is to detect suspicious behavior patterns, quantify potential financial exposure, and provide business stakeholders with actionable fraud insights through visualization.
 
-## Project Overview
+🎯 Business Objectives
 
-This project simulates a real-world financial fraud monitoring system. Using SQL and Power BI, transaction data was analyzed to identify suspicious activity patterns, quantify financial risk exposure, and build an executive-level fraud dashboard.
+This project focuses on:
 
-The goal of this project is to demonstrate fraud detection logic, KPI development, and compliance-focused analytics.
+Identifying duplicate transaction activity
 
----
+Detecting unusually large transaction amounts
 
-## Dataset Fields
+Flagging off-hours transaction anomalies
 
-- Transaction ID  
-- Transaction DateTime  
-- Amount  
-- Vendor / Customer  
-- Payment Method  
-- Location  
+Categorizing transactions by risk severity
 
----
+Estimating total financial exposure related to fraud risk
 
-## Analysis Tasks
+Presenting insights through interactive dashboards
 
-- Identify duplicate transactions  
-- Flag unusually large transaction amounts  
-- Detect time-based anomalies  
-- Assign fraud risk scores and risk levels  
+🛠 Tools & Technologies
 
----
+SQLite — Data querying & fraud flag logic
 
-## Outputs
+SQL — View creation, aggregation, risk scoring
 
-- Fraud KPI summary dashboard  
-- Financial exposure analysis  
-- Risk-level frequency breakdown  
-- Flagged high-risk transaction table  
+Microsoft Power BI — Dashboard design & KPI reporting
 
----
+GitHub — Version control & portfolio hosting
 
-## Tools Used
+📂 Dataset Overview
 
-- SQLite (SQL Analysis)  
-- DB Browser for SQLite  
-- Power BI (Dashboard & Visualization)  
-- GitHub (Version Control)  
+The dataset simulates financial transaction activity and includes the following fields:
 
----
+Transaction ID
 
-## Repository Structure
+Transaction Date & Time
 
+Transaction Amount
+
+Vendor / Customer
+
+Payment Method
+
+Location
+
+⚙ Fraud Detection Logic
+
+Fraud risk was calculated using rule-based detection logic implemented in SQL views.
+
+✅ Duplicate Transaction Detection
+
+Flags transactions that share:
+
+Same vendor
+
+Same amount
+
+Same timestamp
+
+✅ Large Amount Detection
+
+Identifies transactions exceeding a predefined high-value threshold to flag potential fraud risk.
+
+✅ Time-Based Anomaly Detection
+
+Flags transactions occurring outside standard business operating hours.
+
+📊 Risk Scoring Model
+
+Each transaction receives a risk score based on triggered fraud indicators.
+
+Risk Level Criteria High Risk 2 or more fraud flags triggered Medium Risk 1 fraud flag triggered Low Risk No fraud flags triggered 📈 Dashboard Features
+
+The Power BI dashboard includes:
+
+Total flagged transaction KPIs
+
+Financial exposure summary
+
+Risk level distribution charts
+
+High-risk transaction tables
+
+Department/vendor risk breakdowns
+
+🖥 Dashboard Preview
+
+(Insert your exported Power BI dashboard screenshot here)
+
+screenshots/fraud_dashboard.png
+
+Example:
+
+💼 Business Value
+
+This project demonstrates the ability to:
+
+Build fraud detection logic using SQL
+
+Create reusable analytical views
+
+Design executive-level dashboards
+
+Translate raw data into actionable insights
+
+Support risk management decision-making
+
+🚀 Future Improvements
+
+Planned enhancements include:
+
+Machine learning fraud prediction models
+
+Real-time transaction streaming integration
+
+Automated alert systems
+
+Additional anomaly detection techniques
+
+👤 Author
+
+Asheka Baker Business Analytics Portfolio Project Power BI • SQL • Fraud Analytics
+
+Disclaimer
+This project uses anonymized and simulated data for educational and portfolio purposes only. Findings are illustrative and do not represent any real organization.
